@@ -7,6 +7,8 @@ const Canvas = (props) => {
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
 
+    let notes = []
+
     useEffect(() => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
@@ -16,7 +18,9 @@ const Canvas = (props) => {
     }, [])
 
     function play() {
-        new Audio(sound).play()
+        let player = new Audio(sound)
+        player.playbackRate = 1.5
+        player.play()
     }
 
     function drawGrid(context) {
@@ -42,6 +46,8 @@ const Canvas = (props) => {
         const context = canvas.getContext('2d')
         const ctx = context
 
+        ctx.fillStyle = '#FFFFFF'
+
         const rectangleSize = {x: 15, y: 25}
 
         const posX = Math.ceil((coords.x/canvasRef.current.width)*15)
@@ -50,8 +56,18 @@ const Canvas = (props) => {
         const posY = Math.ceil((coords.y/canvasRef.current.height)*5)
         const newPosY = (posY/5)*canvasRef.current.height-15
 
-        ctx.fillStyle = '#FFFFFF'
-        ctx.fillRect(newPosX-(rectangleSize.x/2), newPosY-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
+        const pos = {x:posX,y:posY}
+        const exists = (element) => element.x  === pos.x;
+
+        console.log(notes)
+
+        console.log(notes.some( exists ))
+
+        if(!notes.some( note => note.x === pos.x )) {
+            console.log('new note')
+            notes.push(pos)
+            ctx.fillRect(newPosX-(rectangleSize.x/2), newPosY-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
+        }
     }
 
     const handleMouseMove = (event) => {
@@ -68,7 +84,6 @@ const Canvas = (props) => {
 
     const handleMouseDown = (event) => {
         play()
-
         draw(coords)
     }
 
