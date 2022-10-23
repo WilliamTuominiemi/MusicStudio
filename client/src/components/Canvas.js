@@ -16,10 +16,10 @@ const Canvas = (props) => {
 
     function drawGrid(context) {
         let ctx = context
-        const p = 1
+        const p = 0
         const lineWidth = 0.5
         const cellSizeVertical = 20
-        const cellSizeHorizontal = 40
+        const cellSizeHorizontal = 30
         for (var x = 0; x <= ctx.canvas.width; x += cellSizeVertical) {
             context.moveTo(lineWidth + x + p, p)
             context.lineTo(lineWidth + x + p, ctx.canvas.height + p)
@@ -35,14 +35,18 @@ const Canvas = (props) => {
     function draw(coords) {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-
         const ctx = context
-        ctx.fillStyle = '#FFFFFF'
 
-        const rectangleSize = {x: 16, y: 36}
+        const rectangleSize = {x: 15, y: 25}
+
+        const posX = Math.ceil((coords.x/canvasRef.current.width)*15)
+        const newPosX = (posX/15)*canvasRef.current.width-10
+
+        const posY = Math.ceil((coords.y/canvasRef.current.height)*5)
+        const newPosY = (posY/5)*canvasRef.current.height-15
 
         ctx.fillStyle = '#FFFFFF'
-        ctx.fillRect(coords.x-(rectangleSize.x/2), coords.y-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
+        ctx.fillRect(newPosX-(rectangleSize.x/2), newPosY-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
     }
 
     const handleMouseMove = (event) => {
@@ -58,7 +62,6 @@ const Canvas = (props) => {
     }
 
     const handleMouseDown = (event) => {
-        console.log('fuck')
         draw(coords)
     }
 
