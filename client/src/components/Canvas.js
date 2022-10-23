@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react'
 
+import sound from '../assets/piano.mp3'
+
 const Canvas = (props) => {
     const canvasRef = useRef(null)
-    const ctx = useRef(null)
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
 
@@ -13,6 +14,10 @@ const Canvas = (props) => {
         context.fillRect(0, 0, context.canvas.width, context.canvas.height)
         drawGrid(context)
     }, [])
+
+    function play() {
+        new Audio(sound).play()
+    }
 
     function drawGrid(context) {
         let ctx = context
@@ -62,6 +67,8 @@ const Canvas = (props) => {
     }
 
     const handleMouseDown = (event) => {
+        play()
+
         draw(coords)
     }
 
