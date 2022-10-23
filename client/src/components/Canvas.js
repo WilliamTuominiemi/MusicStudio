@@ -8,50 +8,58 @@ const Canvas = (props) => {
 
     useEffect(() => {
         const canvas = canvasRef.current
-        ctx.current = canvas.getContext('2d')
-        ctx.fillStyle = '#696969'
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-        drawGrid()
-        draw()
+        const context = canvas.getContext('2d')
+        context.fillStyle = '#696969'
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height)
+        drawGrid(context)
     }, [])
 
-    function drawGrid() {
-        // let ctx = context
-        // const p = 1
-        // const lineWidth = 0.5
-        // const cellSizeVertical = 20
-        // const cellSizeHorizontal = 40
-        // for (var x = 0; x <= ctx.canvas.width; x += cellSizeVertical) {
-        //     context.moveTo(lineWidth + x + p, p)
-        //     context.lineTo(lineWidth + x + p, ctx.canvas.height + p)
-        // }
-        // for (var x = 0; x <= ctx.canvas.height; x += cellSizeHorizontal) {
-        //     context.moveTo(p, lineWidth + x + p)
-        //     context.lineTo(ctx.canvas.width + p, lineWidth + x + p)
-        // }
-        // context.strokeStyle = 'black'
-        // context.stroke()
+    function drawGrid(context) {
+        let ctx = context
+        const p = 1
+        const lineWidth = 0.5
+        const cellSizeVertical = 20
+        const cellSizeHorizontal = 40
+        for (var x = 0; x <= ctx.canvas.width; x += cellSizeVertical) {
+            context.moveTo(lineWidth + x + p, p)
+            context.lineTo(lineWidth + x + p, ctx.canvas.height + p)
+        }
+        for (var x = 0; x <= ctx.canvas.height; x += cellSizeHorizontal) {
+            context.moveTo(p, lineWidth + x + p)
+            context.lineTo(ctx.canvas.width + p, lineWidth + x + p)
+        }
+        context.strokeStyle = 'black'
+        context.stroke()
     }
 
-    function draw() {
-        // console.log(context)
-        // const ctx = context
-        // ctx.fillStyle = '#FFFFFF'
-        // ctx.fillRect(3, 3, 16, 36)
+    function draw(coords) {
+        const canvas = canvasRef.current
+        const context = canvas.getContext('2d')
+
+        const ctx = context
+        ctx.fillStyle = '#FFFFFF'
+
+        const rectangleSize = {x: 16, y: 36}
+
+        ctx.fillStyle = '#FFFFFF'
+        ctx.fillRect(coords.x-(rectangleSize.x/2), coords.y-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
     }
 
     const handleMouseMove = (event) => {
-        setCoords({
-            x: event.clientX - 170,
-            y: event.clientY - 180,
-        })
-        console.log(context)
 
-        draw()
+        const rect = canvasRef.current.getBoundingClientRect(),
+        scaleX = canvasRef.current.width / rect.width,
+        scaleY = canvasRef.current.height / rect.height;
+
+        setCoords({
+            x: (event.clientX - rect.left) * scaleX,
+            y: (event.clientY - rect.top) * scaleY,
+        })
     }
 
     const handleMouseDown = (event) => {
         console.log('fuck')
+        draw(coords)
     }
 
     return (
