@@ -1,7 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
 
-import sound from '../assets/piano.mp3'
-
 import Player from './Player'
 
 let notes = []
@@ -19,18 +17,13 @@ const Canvas = (props) => {
         drawGrid(context)
     }, [])
 
-    function play() {
-        let player = new Audio(sound)
-        player.playbackRate = 1.5
-        player.play()
-    }
-
     function drawGrid(context) {
         let ctx = context
         const p = 0
         const lineWidth = 0.5
         const cellSizeVertical = 20
         const cellSizeHorizontal = 30
+
         for (var x = 0; x <= ctx.canvas.width; x += cellSizeVertical) {
             context.moveTo(lineWidth + x + p, p)
             context.lineTo(lineWidth + x + p, ctx.canvas.height + p)
@@ -39,6 +32,7 @@ const Canvas = (props) => {
             context.moveTo(p, lineWidth + x + p)
             context.lineTo(ctx.canvas.width + p, lineWidth + x + p)
         }
+
         context.strokeStyle = 'black'
         context.stroke()
     }
@@ -79,7 +73,6 @@ const Canvas = (props) => {
     }
 
     const handleMouseDown = (event) => {
-        play()
         draw(coords)
     }
 
