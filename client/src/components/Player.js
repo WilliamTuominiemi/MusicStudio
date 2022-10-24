@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'
 
-import sound from '../assets/piano.mp3'
+import piano from '../assets/piano.mp3'
+import bass from '../assets/808.mp3'
 
 const Player = (notes) => {
-    const playSound = () => {
-        let player = new Audio(sound)
+    const playSound = (note) => {
+        let player = new Audio(note)
         player.playbackRate = 1.5
         player.play()
     }
@@ -13,7 +14,16 @@ const Player = (notes) => {
         const notesArray = Object.values(notes)
         if (notesArray.length > 0) {
             notesArray.forEach((note) => {
-                setTimeout(playSound, note.x * 500)
+                setTimeout(function () {
+                    switch (note.y) {
+                        case 1:
+                            playSound(piano)
+                            break
+                        case 2:
+                            playSound(bass)
+                            break
+                    }
+                }, note.x * 500)
             })
         }
     }
