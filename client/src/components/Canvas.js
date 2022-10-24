@@ -60,6 +60,23 @@ const Canvas = (props) => {
                 rectangleSize.x,
                 rectangleSize.y
             )
+        } else {
+            console.log(notes)
+            context.fillStyle = '#696969'
+
+            context.fillRect(
+                newPosX - rectangleSize.x / 2 - 1,
+                newPosY - rectangleSize.y / 2 - 1,
+                rectangleSize.x + 2,
+                rectangleSize.y + 2
+            )
+
+            const index = notes.findIndex((note) => note.x === pos.x && note.y === pos.y)
+            if (index > -1) {
+                notes.splice(index, 1)
+            }
+
+            console.log(notes)
         }
     }
 
