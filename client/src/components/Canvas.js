@@ -59,11 +59,6 @@ const Canvas = (props) => {
         const newPosY = (posY / 5) * canvasRef.current.height - 15
 
         const pos = { x: posX, y: posY }
-        const exists = (element) => element.x === pos.x
-
-        console.log(notes)
-
-        console.log(notes.some(exists))
 
         if (!notes.some((note) => note.x === pos.x)) {
             console.log('new note')

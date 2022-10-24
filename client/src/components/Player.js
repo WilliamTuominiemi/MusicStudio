@@ -1,16 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react'
 
-const Player = (notes) => {
-    useEffect(() => {
-        console.log(notes)
-    }, [])
+import sound from '../assets/piano.mp3'
 
+const Player = (notes) => {
     const handleClick = () => {
-        console.log('click')
-        console.log(notes)
+        const notesArray = Object.values(notes)
+        if (notesArray.length > 0) {
+            console.log(notesArray)
+        }
     }
 
-    return <button onClick={handleClick}></button>
+    return <button onClick={handleClick}>Play</button>
 }
 
 export default Player
