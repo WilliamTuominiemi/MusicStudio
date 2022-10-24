@@ -2,12 +2,12 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import sound from '../assets/piano.mp3'
 
+let notes = []
+
 const Canvas = (props) => {
     const canvasRef = useRef(null)
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
-
-    let notes = []
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -48,33 +48,32 @@ const Canvas = (props) => {
 
         ctx.fillStyle = '#FFFFFF'
 
-        const rectangleSize = {x: 15, y: 25}
+        const rectangleSize = { x: 15, y: 25 }
 
-        const posX = Math.ceil((coords.x/canvasRef.current.width)*15)
-        const newPosX = (posX/15)*canvasRef.current.width-10
+        const posX = Math.ceil((coords.x / canvasRef.current.width) * 15)
+        const newPosX = (posX / 15) * canvasRef.current.width - 10
 
-        const posY = Math.ceil((coords.y/canvasRef.current.height)*5)
-        const newPosY = (posY/5)*canvasRef.current.height-15
+        const posY = Math.ceil((coords.y / canvasRef.current.height) * 5)
+        const newPosY = (posY / 5) * canvasRef.current.height - 15
 
-        const pos = {x:posX,y:posY}
-        const exists = (element) => element.x  === pos.x;
+        const pos = { x: posX, y: posY }
+        const exists = (element) => element.x === pos.x
 
         console.log(notes)
 
-        console.log(notes.some( exists ))
+        console.log(notes.some(exists))
 
-        if(!notes.some( note => note.x === pos.x )) {
+        if (!notes.some((note) => note.x === pos.x)) {
             console.log('new note')
             notes.push(pos)
-            ctx.fillRect(newPosX-(rectangleSize.x/2), newPosY-(rectangleSize.y/2), rectangleSize.x, rectangleSize.y)
+            ctx.fillRect(newPosX - rectangleSize.x / 2, newPosY - rectangleSize.y / 2, rectangleSize.x, rectangleSize.y)
         }
     }
 
     const handleMouseMove = (event) => {
-
         const rect = canvasRef.current.getBoundingClientRect(),
-        scaleX = canvasRef.current.width / rect.width,
-        scaleY = canvasRef.current.height / rect.height;
+            scaleX = canvasRef.current.width / rect.width,
+            scaleY = canvasRef.current.height / rect.height
 
         setCoords({
             x: (event.clientX - rect.left) * scaleX,
