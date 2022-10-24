@@ -53,6 +53,7 @@ const Canvas = (props) => {
         const pos = { x: posX, y: posY }
 
         if (!notes.some((note) => note.x === pos.x && note.y === pos.y)) {
+            notes.push(pos)
             context.fillRect(
                 newPosX - rectangleSize.x / 2,
                 newPosY - rectangleSize.y / 2,
