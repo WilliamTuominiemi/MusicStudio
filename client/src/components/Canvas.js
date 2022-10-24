@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import sound from '../assets/piano.mp3'
 
+import Player from './Player'
+
 let notes = []
 
 const Canvas = (props) => {
@@ -87,13 +89,16 @@ const Canvas = (props) => {
     }
 
     return (
-        <canvas
-            onMouseMove={handleMouseMove}
-            onMouseDown={handleMouseDown}
-            style={{ width: '100%', maxWidth: '100%', height: '100%' }}
-            ref={canvasRef}
-            {...props}
-        />
+        <>
+            <canvas
+                onMouseMove={handleMouseMove}
+                onMouseDown={handleMouseDown}
+                style={{ width: '100%', maxWidth: '100%', height: '100%' }}
+                ref={canvasRef}
+                {...props}
+            />
+            <Player {...notes} />
+        </>
     )
 }
 
