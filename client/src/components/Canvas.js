@@ -18,19 +18,18 @@ const Canvas = (props) => {
     }, [])
 
     function drawGrid(context) {
-        let ctx = context
-        const p = 0
+        const offset = 0
         const lineWidth = 0.5
         const cellSizeVertical = 20
         const cellSizeHorizontal = 30
 
-        for (var x = 0; x <= ctx.canvas.width; x += cellSizeVertical) {
-            context.moveTo(lineWidth + x + p, p)
-            context.lineTo(lineWidth + x + p, ctx.canvas.height + p)
+        for (let x = 0; x <= context.canvas.width; x += cellSizeVertical) {
+            context.moveTo(lineWidth + x + offset, offset)
+            context.lineTo(lineWidth + x + offset, context.canvas.height + offset)
         }
-        for (var x = 0; x <= ctx.canvas.height; x += cellSizeHorizontal) {
-            context.moveTo(p, lineWidth + x + p)
-            context.lineTo(ctx.canvas.width + p, lineWidth + x + p)
+        for (let x = 0; x <= context.canvas.height; x += cellSizeHorizontal) {
+            context.moveTo(offset, lineWidth + x + offset)
+            context.lineTo(context.canvas.width + offset, lineWidth + x + offset)
         }
 
         context.strokeStyle = 'black'
@@ -40,9 +39,8 @@ const Canvas = (props) => {
     function draw(coords) {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-        const ctx = context
 
-        ctx.fillStyle = '#FFFFFF'
+        context.fillStyle = '#FFFFFF'
 
         const rectangleSize = { x: 15, y: 25 }
 
@@ -57,7 +55,12 @@ const Canvas = (props) => {
         if (!notes.some((note) => note === pos)) {
             console.log('new note')
             notes.push(pos)
-            ctx.fillRect(newPosX - rectangleSize.x / 2, newPosY - rectangleSize.y / 2, rectangleSize.x, rectangleSize.y)
+            context.fillRect(
+                newPosX - rectangleSize.x / 2,
+                newPosY - rectangleSize.y / 2,
+                rectangleSize.x,
+                rectangleSize.y
+            )
         }
     }
 
