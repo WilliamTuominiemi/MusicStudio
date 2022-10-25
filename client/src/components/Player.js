@@ -1,5 +1,5 @@
 import piano from '../assets/piano.mp3'
-import bass from '../assets/808.mp3'
+import kick from '../assets/kick.mp3'
 import hihat from '../assets/hihat.mp3'
 import guitar from '../assets/guitar.mp3'
 import snare from '../assets/snare.mp3'
@@ -52,7 +52,7 @@ const Player = (notes) => {
                                 playSound(guitar)
                                 break
                             case 3:
-                                playSound(bass)
+                                playSound(kick)
                                 break
                             case 4:
                                 playSound(hihat)
