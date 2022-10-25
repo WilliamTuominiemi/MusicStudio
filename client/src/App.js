@@ -10,12 +10,12 @@ function App() {
                 height: '100vh',
             }}
         >
-            <div class="grid-container">
-                <div class="grid-item">PIANO</div>
-                <div class="grid-item">GUITAR</div>
-                <div class="grid-item">KICK</div>
-                <div class="grid-item">HIHAT</div>
-                <div class="grid-item">SNARE</div>
+            <div className="grid-container">
+                <div className="grid-item">PIANO</div>
+                <div className="grid-item">GUITAR</div>
+                <div className="grid-item">KICK</div>
+                <div className="grid-item">HIHAT</div>
+                <div className="grid-item">SNARE</div>
             </div>
             <Canvas />
         </div>
