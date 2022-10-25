@@ -4,6 +4,9 @@ import Player from './Player'
 
 let notes = []
 
+const backgroundColor = '#66707E'
+const gridColor = '#3D434B'
+
 const Canvas = (props) => {
     const canvasRef = useRef(null)
 
@@ -12,7 +15,7 @@ const Canvas = (props) => {
     useEffect(() => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-        context.fillStyle = '#696969'
+        context.fillStyle = backgroundColor
         context.fillRect(0, 0, context.canvas.width, context.canvas.height)
         drawGrid(context)
     }, [])
@@ -32,7 +35,7 @@ const Canvas = (props) => {
             context.lineTo(context.canvas.width + offset, lineWidth + x + offset)
         }
 
-        context.strokeStyle = 'black'
+        context.strokeStyle = gridColor
         context.stroke()
     }
 
@@ -40,7 +43,8 @@ const Canvas = (props) => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
 
-        context.fillStyle = '#FFFFFF'
+        context.fillStyle = '#A3B3C9'
+        context.strokeStyle = '#282C32'
 
         const rectangleSize = { x: 15, y: 25 }
 
@@ -60,9 +64,14 @@ const Canvas = (props) => {
                 rectangleSize.x,
                 rectangleSize.y
             )
+            context.strokeRect(
+                newPosX - rectangleSize.x / 2,
+                newPosY - rectangleSize.y / 2,
+                rectangleSize.x,
+                rectangleSize.y
+            )
         } else {
-            console.log(notes)
-            context.fillStyle = '#696969'
+            context.fillStyle = backgroundColor
 
             context.fillRect(
                 newPosX - rectangleSize.x / 2 - 1,
@@ -75,8 +84,6 @@ const Canvas = (props) => {
             if (index > -1) {
                 notes.splice(index, 1)
             }
-
-            console.log(notes)
         }
     }
 
