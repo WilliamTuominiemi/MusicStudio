@@ -6,8 +6,8 @@ import clap from '../assets/clap.mp3'
 import { useEffect, useState } from 'react'
 
 const Player = (notes) => {
-    const [pitch, setpitch] = useState(1.00)
-
+    const [pitch, setPitch] = useState(1.00)
+    const [speed, setSpeed] = useState(500)
 
     let timeouts = []
 
@@ -65,7 +65,7 @@ const Player = (notes) => {
                             default:
                                 break
                         }
-                    }, note.x * 500)
+                    }, note.x * speed)
                 )
             })
         }
@@ -81,7 +81,12 @@ const Player = (notes) => {
 
     const onScrollPitch = (e) => {
         const delta = Math.round((e.deltaY * -0.001)*1000) / 1000
-        setpitch(Math.min(Math.max((Math.round((pitch + delta)*1000) / 1000), 0.5), 5))
+        setPitch(Math.min(Math.max((Math.round((pitch + delta)*1000) / 1000), 0.5), 5))
+    }
+
+    const onScrollSpeed = (e) => {
+        const delta = Math.round((e.deltaY * -0.1)*1000) / 1000
+        setSpeed(Math.min(Math.max((Math.round((speed + delta)*1000) / 1000), 100), 1000))
     }
 
     return (
@@ -96,11 +101,13 @@ const Player = (notes) => {
                     <path d="M2 2h20v20h-20z" />
                 </svg>
             </button>
-            <div className='pitch' onWheelCapture={onScrollPitch}>
-                <div className="pitch-bg">
+            <div className='scroll' onWheelCapture={onScrollPitch}>
                     PITCH
-                </div>
                 <p style={{fontSize: 20, margin: 'auto'}}>{pitch.toFixed(2)}</p>
+            </div>
+            <div className='scroll' onWheelCapture={onScrollSpeed}>
+                    SPEED
+                <p style={{fontSize: 20, margin: 'auto'}}>{speed}</p>
             </div>
         </div>
     )
