@@ -3,19 +3,21 @@ import bass from '../assets/808.mp3'
 import hihat from '../assets/hihat.mp3'
 import synth from '../assets/synth.mp3'
 import clap from '../assets/clap.mp3'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Player = (notes) => {
+    const [pitch, setpitch] = useState(1.00)
+
+
     let timeouts = []
 
     let playing = false
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown)
-    }, [])
+    }, [])  
 
     const handleKeyDown = (event) => {
-        console.log(event.keyCode)
         switch (event.keyCode) {
             case 32:
                 if (playing) {
@@ -33,7 +35,7 @@ const Player = (notes) => {
 
     const playSound = (note) => {
         let player = new Audio(note)
-        player.playbackRate = 1.25
+        player.playbackRate = pitch
         player.play()
     }
 
@@ -66,7 +68,6 @@ const Player = (notes) => {
                     }, note.x * 500)
                 )
             })
-            console.log(timeouts)
         }
     }
 
@@ -76,6 +77,11 @@ const Player = (notes) => {
         }
 
         timeouts = []
+    }
+
+    const onScrollPitch = (e) => {
+        const delta = Math.round((e.deltaY * -0.001)*1000) / 1000
+        setpitch(Math.min(Math.max((Math.round((pitch + delta)*1000) / 1000), 0.5), 5))
     }
 
     return (
@@ -90,6 +96,12 @@ const Player = (notes) => {
                     <path d="M2 2h20v20h-20z" />
                 </svg>
             </button>
+            <div className='pitch' onWheelCapture={onScrollPitch}>
+                <div className="pitch-bg">
+                    PITCH
+                </div>
+                <p style={{fontSize: 20, margin: 'auto'}}>{pitch.toFixed(2)}</p>
+            </div>
         </div>
     )
 }
