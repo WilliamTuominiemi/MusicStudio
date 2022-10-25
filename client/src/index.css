@@ -9,14 +9,15 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  ;
+  grid-template-columns: auto;
   background-color: #515964;
   padding: 5px;
 }
+
 .grid-item {
   background-color: #CCCED0;
   border: 1px solid #3D434B;
-  padding: 20px;
+  padding: 18px;
   font-size: 30px;
   text-align: center;
 }
