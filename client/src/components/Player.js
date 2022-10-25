@@ -80,11 +80,13 @@ const Player = (notes) => {
     }
 
     const onScrollPitch = (e) => {
+        stop()
         const delta = Math.round((e.deltaY * -0.001)*1000) / 1000
         setPitch(Math.min(Math.max((Math.round((pitch + delta)*1000) / 1000), 0.5), 5))
     }
 
     const onScrollSpeed = (e) => {
+        stop()
         const delta = Math.round((e.deltaY * -0.1)*1000) / 1000
         setSpeed(Math.min(Math.max((Math.round((speed + delta)*1000) / 1000), 100), 1000))
     }
