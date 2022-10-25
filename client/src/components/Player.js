@@ -40,7 +40,11 @@ const Player = (notes) => {
         }
     }
 
-    return <button onClick={handleClick}>Play</button>
+    return (
+        <button onClick={handleClick} style={{ margin: '10px', padding: '10px' }}>
+            <img src="https://cdn-icons-png.flaticon.com/512/0/375.png" height="50px"></img>
+        </button>
+    )
 }
 
 export default Player
