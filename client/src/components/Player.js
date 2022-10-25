@@ -7,7 +7,7 @@ import snare from '../assets/snare.mp3'
 const Player = (notes) => {
     const playSound = (note) => {
         let player = new Audio(note)
-        player.playbackRate = 1.5
+        player.playbackRate = 1.25
         player.play()
     }
 
