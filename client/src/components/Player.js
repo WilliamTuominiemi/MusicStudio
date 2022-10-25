@@ -1,8 +1,8 @@
-import piano from '../assets/piano.mp3'
-import kick from '../assets/kick.mp3'
+import bell from '../assets/bell.mp3'
+import bass from '../assets/808.mp3'
 import hihat from '../assets/hihat.mp3'
-import guitar from '../assets/guitar.mp3'
-import snare from '../assets/snare.mp3'
+import synth from '../assets/synth.mp3'
+import clap from '../assets/clap.mp3'
 import { useEffect } from 'react'
 
 const Player = (notes) => {
@@ -46,19 +46,19 @@ const Player = (notes) => {
                     setTimeout(function () {
                         switch (note.y) {
                             case 1:
-                                playSound(piano)
+                                playSound(bell)
                                 break
                             case 2:
-                                playSound(guitar)
+                                playSound(synth)
                                 break
                             case 3:
-                                playSound(kick)
+                                playSound(bass)
                                 break
                             case 4:
                                 playSound(hihat)
                                 break
                             case 5:
-                                playSound(snare)
+                                playSound(clap)
                                 break
                             default:
                                 break

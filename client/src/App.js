@@ -11,11 +11,11 @@ function App() {
             }}
         >
             <div className="grid-container">
-                <div className="grid-item">PIANO</div>
-                <div className="grid-item">GUITAR</div>
-                <div className="grid-item">KICK</div>
+                <div className="grid-item">BELL</div>
+                <div className="grid-item">SYNTH</div>
+                <div className="grid-item">808</div>
                 <div className="grid-item">HIHAT</div>
-                <div className="grid-item">SNARE</div>
+                <div className="grid-item">CLAP</div>
             </div>
             <Canvas />
         </div>
