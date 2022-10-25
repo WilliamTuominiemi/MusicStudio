@@ -1,5 +1,3 @@
-import React, { useRef, useEffect, useState } from 'react'
-
 import piano from '../assets/piano.mp3'
 import bass from '../assets/808.mp3'
 import hihat from '../assets/hihat.mp3'
@@ -33,6 +31,8 @@ const Player = (notes) => {
                             break
                         case 5:
                             playSound(snare)
+                            break
+                        default:
                             break
                     }
                 }, note.x * 500)
