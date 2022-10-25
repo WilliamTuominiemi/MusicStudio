@@ -57,13 +57,14 @@ const Player = (notes) => {
     return (
         <div>
             <button onClick={playButton} style={{ margin: '10px', padding: '10px' }}>
-                <img src="https://cdn-icons-png.flaticon.com/512/0/375.png" height="50px"></img>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M3 22v-20l18 10-18 10z" />
+                </svg>
             </button>
             <button onClick={stop} style={{ margin: '10px', padding: '10px' }}>
-                <img
-                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                    height="50px"
-                ></img>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M2 2h20v20h-20z" />
+                </svg>
             </button>
         </div>
     )
