@@ -3,9 +3,33 @@ import bass from '../assets/808.mp3'
 import hihat from '../assets/hihat.mp3'
 import guitar from '../assets/guitar.mp3'
 import snare from '../assets/snare.mp3'
+import { useEffect } from 'react'
 
 const Player = (notes) => {
     let timeouts = []
+
+    let playing = false
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown)
+    }, [])
+
+    const handleKeyDown = (event) => {
+        console.log(event.keyCode)
+        switch (event.keyCode) {
+            case 32:
+                if (playing) {
+                    playing = false
+                    stop()
+                } else {
+                    playing = true
+                    playButton()
+                }
+                break
+            default:
+                break
+        }
+    }
 
     const playSound = (note) => {
         let player = new Audio(note)
