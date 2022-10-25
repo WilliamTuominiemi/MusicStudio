@@ -22,8 +22,8 @@ const Canvas = (props) => {
 
     function drawGrid(context) {
         const offset = 0
-        const lineWidth = 0.5
-        const cellSizeVertical = 20
+        const lineWidth = 0.1
+        const cellSizeVertical = context.canvas.width / 16
         const cellSizeHorizontal = 30
 
         for (let x = 0; x <= context.canvas.width; x += cellSizeVertical) {
@@ -46,13 +46,16 @@ const Canvas = (props) => {
         context.fillStyle = '#A3B3C9'
         context.strokeStyle = '#282C32'
 
-        const rectangleSize = { x: 15, y: 25 }
+        const gridSizeX = 16
+        const gridSizeY = 5
 
-        const posX = Math.ceil((coords.x / canvasRef.current.width) * 15)
-        const newPosX = (posX / 15) * canvasRef.current.width - 10
+        const rectangleSize = { x: 16, y: 26 }
 
-        const posY = Math.ceil((coords.y / canvasRef.current.height) * 5)
-        const newPosY = (posY / 5) * canvasRef.current.height - 15
+        const posX = Math.ceil((coords.x / canvasRef.current.width) * gridSizeX)
+        const newPosX = (posX / gridSizeX) * canvasRef.current.width - context.canvas.width / gridSizeX / 2
+
+        const posY = Math.ceil((coords.y / canvasRef.current.height) * gridSizeY)
+        const newPosY = (posY / gridSizeY) * canvasRef.current.height - context.canvas.height / gridSizeY / 2
 
         const pos = { x: posX, y: posY }
 
