@@ -6,7 +6,7 @@ import clap from '../assets/clap.mp3'
 import { useEffect, useState } from 'react'
 
 const Player = (notes) => {
-    const [pitch, setPitch] = useState(1.00)
+    const [pitch, setPitch] = useState(1.0)
     const [speed, setSpeed] = useState(500)
 
     let timeouts = []
@@ -15,7 +15,7 @@ const Player = (notes) => {
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown)
-    }, [])  
+    }, [])
 
     const handleKeyDown = (event) => {
         switch (event.keyCode) {
@@ -81,14 +81,14 @@ const Player = (notes) => {
 
     const onScrollPitch = (e) => {
         stop()
-        const delta = Math.round((e.deltaY * -0.001)*1000) / 1000
-        setPitch(Math.min(Math.max((Math.round((pitch + delta)*1000) / 1000), 0.5), 5))
+        const delta = Math.round(e.deltaY * -0.001 * 1000) / 1000
+        setPitch(Math.min(Math.max(Math.round((pitch + delta) * 1000) / 1000, 0.5), 5))
     }
 
     const onScrollSpeed = (e) => {
         stop()
-        const delta = Math.round((e.deltaY * -0.1)*1000) / 1000
-        setSpeed(Math.min(Math.max((Math.round((speed + delta)*1000) / 1000), 100), 1000))
+        const delta = Math.round(e.deltaY * -0.1 * 1000) / 1000
+        setSpeed(Math.min(Math.max(Math.round((speed + delta) * 1000) / 1000, 100), 1000))
     }
 
     return (
@@ -103,13 +103,25 @@ const Player = (notes) => {
                     <path d="M2 2h20v20h-20z" />
                 </svg>
             </button>
-            <div className='scroll' onWheelCapture={onScrollPitch}>
-                    PITCH
-                <p style={{fontSize: 20, margin: 'auto'}}>{pitch.toFixed(2)}</p>
+            <div className="scroll" onWheelCapture={onScrollPitch}>
+                PITCH
+                <p style={{ fontSize: 20, margin: 'auto' }}>{pitch.toFixed(2)}</p>
             </div>
-            <div className='scroll' onWheelCapture={onScrollSpeed}>
-                    SPEED
-                <p style={{fontSize: 20, margin: 'auto'}}>{speed}</p>
+            <div className="scroll" onWheelCapture={onScrollSpeed}>
+                SPEED
+                <p style={{ fontSize: 20, margin: 'auto' }}>{speed}</p>
+            </div>
+            <div className="scroll" onClick={() => window.location.reload(false)}>
+                <svg
+                    width="24"
+                    height="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    style={{ margin: '10px' }}
+                >
+                    <path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" />
+                </svg>{' '}
             </div>
         </div>
     )
