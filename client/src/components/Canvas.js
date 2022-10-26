@@ -42,8 +42,14 @@ const Canvas = (props) => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
 
-        context.fillStyle = '#A3B3C9'
+        let gradient = context.createLinearGradient(0, 0, 0, 170)
+        gradient.addColorStop(0, '#A3B3C9')
+        gradient.addColorStop(1, '#6699CC')
+
+        context.fillStyle = gradient
         context.strokeStyle = '#282C32'
+
+        //'#A3B3C9'
 
         const gridSizeX = 16
         const gridSizeY = 5

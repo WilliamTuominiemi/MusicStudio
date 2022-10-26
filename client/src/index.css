@@ -4,7 +4,8 @@ body {
         'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #808080;
+    background: rgb(158,158,158);
+background: linear-gradient(90deg, rgba(158,158,158,1) 0%, rgba(150,150,166,1) 35%, rgba(106,106,106,1) 100%);
 }
 
 .grid-container {
@@ -15,7 +16,8 @@ body {
 }
 
 .grid-item {
-    background-color: #ccced0;
+    background: rgb(219,219,219);
+    background: linear-gradient(0deg, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 45%, rgba(220,220,220,1) 100%);
     border: 1px solid #3d434b;
     padding: 18px;
     font-size: 30px;
@@ -24,7 +26,8 @@ body {
 
 .scroll {
     margin: 10px;
-    background-color: white;
+    background: rgb(255,255,255);
+    background: linear-gradient(55deg, rgba(255,255,255,1) 0%, rgba(201,201,201,1) 45%, rgba(255,255,255,1) 100%);
     border: 0.5px solid gray;
     text-align: center;
     position: relative;
