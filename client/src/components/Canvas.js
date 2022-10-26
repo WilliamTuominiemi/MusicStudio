@@ -3,18 +3,22 @@ import Player from './Player'
 
 let notes = []
 
-const backgroundColor = '#66707E'
 const gridColor = '#3D434B'
 
 const Canvas = (props) => {
     const canvasRef = useRef(null)
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
+    const [backgroundColor, setBackgroundColor] = useState('#66707E')
 
     useEffect(() => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-        context.fillStyle = backgroundColor
+        let bgGradient = context.createLinearGradient(0, 0, 0, 170)
+        bgGradient.addColorStop(0, '#66707E')
+        bgGradient.addColorStop(1, '#3D5F74')
+        setBackgroundColor(bgGradient)
+        context.fillStyle = bgGradient
         context.fillRect(0, 0, context.canvas.width, context.canvas.height)
         drawGrid(context)
     }, [])
@@ -49,8 +53,6 @@ const Canvas = (props) => {
         context.fillStyle = gradient
         context.strokeStyle = '#282C32'
 
-        //'#A3B3C9'
-
         const gridSizeX = 16
         const gridSizeY = 5
 
@@ -82,10 +84,10 @@ const Canvas = (props) => {
             context.fillStyle = backgroundColor
 
             context.fillRect(
-                newPosX - rectangleSize.x / 2 - 1,
-                newPosY - rectangleSize.y / 2 - 1,
-                rectangleSize.x + 2,
-                rectangleSize.y + 2
+                newPosX - rectangleSize.x / 2 - 0.5,
+                newPosY - rectangleSize.y / 2 - 0.5,
+                rectangleSize.x + 1,
+                rectangleSize.y + 1
             )
 
             const index = notes.findIndex((note) => note.x === pos.x && note.y === pos.y)
