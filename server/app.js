@@ -6,8 +6,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.get('/', (_req, res) => {
-    res.json({ message: 'Hello World' })
+app.post('/', (_req, res) => {
+    console.log(_req.body)
+    res.json({ message: 'data received' })
 })
 
 app.listen(8080, () => {

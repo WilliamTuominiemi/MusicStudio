@@ -1,19 +1,6 @@
 import Canvas from './components/Canvas.js'
-import { useEffect } from 'react'
-
-const getData = async () => {
-    const data = await fetch('http://localhost:8080')
-    const json = await data.json()
-    return json
-}
 
 function App() {
-    useEffect(() => {
-        getData().then((data) => {
-            console.log(data)
-        })
-    }, [])
-
     return (
         <div
             style={{
