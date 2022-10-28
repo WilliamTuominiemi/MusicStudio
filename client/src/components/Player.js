@@ -14,12 +14,12 @@ const Player = (notes) => {
     let playing = false
 
     const postData = async () => {
-        console.log(JSON.stringify({notes}))
+        console.log(JSON.stringify({ notes }))
         const data = await fetch('http://localhost:8080', {
             method: 'POST',
             body: JSON.stringify(notes),
-            headers:{
-                'Content-Type': 'application/json'
+            headers: {
+                'Content-Type': 'application/json',
             },
         })
         const json = await data.json()
@@ -137,9 +137,17 @@ const Player = (notes) => {
                 </svg>
             </div>
             <div className="scroll" onClick={postData}>
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" style={{ margin: '10px' }}>
-                <path d="M9 16h-8v6h22v-6h-8v-1h9v8h-24v-8h9v1zm11 2c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1zm-7.5 0h-1v-14.883l-4.735 5.732-.765-.644 6.021-7.205 5.979 7.195-.764.645-4.736-5.724v14.884z"/></svg>
-            </div >
+                <svg
+                    width="24"
+                    height="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    style={{ margin: '10px' }}
+                >
+                    <path d="M9 16h-8v6h22v-6h-8v-1h9v8h-24v-8h9v1zm11 2c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1zm-7.5 0h-1v-14.883l-4.735 5.732-.765-.644 6.021-7.205 5.979 7.195-.764.645-4.736-5.724v14.884z" />
+                </svg>
+            </div>
         </div>
     )
 }
