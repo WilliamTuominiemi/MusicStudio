@@ -14,7 +14,6 @@ const Player = (notes) => {
     let playing = false
 
     const postData = async () => {
-        console.log(JSON.stringify({ notes }))
         const data = await fetch('http://localhost:8080', {
             method: 'POST',
             body: JSON.stringify(notes),
