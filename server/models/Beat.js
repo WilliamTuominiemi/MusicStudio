@@ -7,4 +7,4 @@ const BeatSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('User', BeatSchema)
+module.exports = mongoose.model('Beat', BeatSchema)
