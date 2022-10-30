@@ -23,7 +23,7 @@ export const BeatCard = (data) => {
     }
 
     return (
-        <Card className="text-center" style={{ width: '18rem' }}>
+        <Card className="beat-card" style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Title color="text.secondary">{data.beat._id}</Card.Title>
                 <button onClick={playButton} style={{ margin: '10px', padding: '10px' }}>
