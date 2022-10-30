@@ -1,8 +1,3 @@
-import bell from '../assets/bell.mp3'
-import bass from '../assets/808.mp3'
-import hihat from '../assets/hihat.mp3'
-import synth from '../assets/synth.mp3'
-import clap from '../assets/clap.mp3'
 import { useEffect, useState } from 'react'
 
 import { Play, Stop, Pitch, Speed } from './Sound'
@@ -27,7 +22,7 @@ const Player = (notes) => {
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown)
-    }, [])
+    })
 
     const handleKeyDown = (event) => {
         switch (event.keyCode) {
