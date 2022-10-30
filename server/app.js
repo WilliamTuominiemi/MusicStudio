@@ -16,7 +16,7 @@ app.post('/', (req, res) => {
     const data = Object.entries(req.body)
 
     const obj = {
-        beat: data,
+        notes: data,
     }
 
     Beat.create(obj, (err, item) => {
@@ -25,7 +25,19 @@ app.post('/', (req, res) => {
             console.log(err)
         }
     })
-    res.json({ message: 'data received' })
+    res.json({ message: 'Beat uploaded successfully' })
+})
+
+app.get('/', async (req, res) => {
+    try {
+        let beats = []
+
+        beats = await Beat.find().sort({ createdAt: -1 })
+
+        return res.json({ beats })
+    } catch (err) {
+        return err
+    }
 })
 
 app.listen(8080, () => {

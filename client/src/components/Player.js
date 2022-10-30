@@ -22,7 +22,7 @@ const Player = (notes) => {
             },
         })
         const json = await data.json()
-        return json
+        return alert(json.message)
     }
 
     useEffect(() => {
@@ -52,6 +52,8 @@ const Player = (notes) => {
     }
 
     const playButton = () => {
+        console.log(notes)
+
         stop()
         const notesArray = Object.values(notes)
         if (notesArray.length > 0) {

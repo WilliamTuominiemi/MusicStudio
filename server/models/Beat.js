@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const BeatSchema = new mongoose.Schema({
-    beat: {
+    notes: {
         type: Array,
         required: true,
     },
