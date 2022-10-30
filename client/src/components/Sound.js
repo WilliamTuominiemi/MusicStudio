@@ -9,8 +9,6 @@ let speed = 500
 
 let timeouts = []
 
-let playing = false
-
 export const Play = (notes) => {
     Stop()
     const notesArray = Object.values(notes)
