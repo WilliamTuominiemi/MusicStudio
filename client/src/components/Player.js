@@ -1,19 +1,28 @@
 import { useEffect, useState } from 'react'
-
 import { Play, Stop, Pitch, Speed } from './Sound'
-
 import { Dropdown, Form, Button } from 'react-bootstrap'
 
 const Player = (notes) => {
     const [pitch, setPitch] = useState(1.0)
     const [speed, setSpeed] = useState(500)
 
+    const [name, setName] = useState('')
+    const [cover, setCover] = useState('#563d7c')
+
     let playing = false
 
     const postData = async () => {
+        const body = {
+            name,
+            cover,
+            pitch,
+            speed,
+            notes,
+        }
+
         const data = await fetch('http://localhost:8080', {
             method: 'POST',
-            body: JSON.stringify(notes),
+            body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -109,7 +118,12 @@ const Player = (notes) => {
                 <Dropdown.Menu>
                     <Form style={{ margin: '10px' }}>
                         <Form.Group className="mb-3">
-                            <Form.Control type="text" placeholder="Song name" />
+                            <Form.Control
+                                defaultValue={name}
+                                type="text"
+                                placeholder="Song name"
+                                onChange={(e) => setName(e.target.value)}
+                            />
                         </Form.Group>
 
                         <>
@@ -117,12 +131,18 @@ const Player = (notes) => {
                             <Form.Control
                                 type="color"
                                 id="exampleColorInput"
-                                defaultValue="#563d7c"
+                                defaultValue={cover}
                                 title="Cover color"
+                                onChange={(e) => setCover(e.target.value)}
                             />
                         </>
 
-                        <Button variant="dark" type="submit">
+                        <Button
+                            onClick={async () => {
+                                await postData()
+                            }}
+                            variant="dark"
+                        >
                             Upload
                         </Button>
                     </Form>
