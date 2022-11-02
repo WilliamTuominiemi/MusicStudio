@@ -16,7 +16,11 @@ app.post('/', (req, res) => {
     const data = Object.entries(req.body)
 
     const obj = {
-        notes: data,
+        name: req.body.name,
+        cover: req.body.cover,
+        pitch: req.body.pitch,
+        speed: req.body.speed,
+        notes: req.body.notes,
     }
 
     Beat.create(obj, (err, item) => {
