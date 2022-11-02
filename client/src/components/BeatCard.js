@@ -6,7 +6,8 @@ import { Card } from 'react-bootstrap'
 
 export const BeatCard = (data) => {
     useEffect(() => {
-        fixArray(data)
+        // fixArray(data)
+        console.log(data)
     })
 
     const notes = []

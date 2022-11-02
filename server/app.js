@@ -12,23 +12,17 @@ connectDb()
 app.use(express.json())
 app.use(cors())
 
-app.post('/', (req, res) => {
-    const data = Object.entries(req.body)
+app.post('/', async (req, res) => {
+    const { name, cover, pitch, speed } = req.body
 
-    const obj = {
-        name: req.body.name,
-        cover: req.body.cover,
-        pitch: req.body.pitch,
-        speed: req.body.speed,
-        notes: req.body.notes,
-    }
-
-    Beat.create(obj, (err, item) => {
-        console.log(item)
-        if (err) {
-            console.log(err)
-        }
+    const beat = await Beat.create({
+        name,
+        cover,
+        pitch,
+        speed,
+        notes: Object.entries(req.body.notes),
     })
+    console.log(beat)
     res.json({ message: 'Beat uploaded successfully' })
 })
 
