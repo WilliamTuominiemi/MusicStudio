@@ -11,11 +11,11 @@ export const Home = () => {
             }}
         >
             <div className="grid-container">
-                <div className="grid-item">BELL</div>
-                <div className="grid-item">SYNTH</div>
-                <div className="grid-item">808</div>
-                <div className="grid-item">HIHAT</div>
-                <div className="grid-item">CLAP</div>
+                <div className="grid-item">🔔</div>
+                <div className="grid-item">🎹</div>
+                <div className="grid-item">🎸</div>
+                <div className="grid-item">🥁</div>
+                <div className="grid-item">👏</div>
             </div>
             <Canvas />
         </div>
