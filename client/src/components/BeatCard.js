@@ -8,6 +8,8 @@ export const BeatCard = (data) => {
     const vinylRef = useRef(null)
 
     useEffect(() => {
+        Pitch(data.beat.pitch)
+        Speed(data.beat.speed)
         fixArray(data.beat.notes)
     })
 

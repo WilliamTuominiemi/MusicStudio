@@ -60,6 +60,5 @@ export const Pitch = (p) => {
 }
 
 export const Speed = (s) => {
-    console.log(s)
     speed = s
 }
