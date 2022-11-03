@@ -53,23 +53,22 @@ body {
     margin: 10px;
 }
 
-
 .vinyl {
+    height: 40vmin;
     pointer-events: none;
 }
-  
+
 @media (prefers-reduced-motion: no-preference) {
-    .vinyl {
-      animation: Logo-spin infinite 20s linear;
+    #vinyl {
+        animation: Logo-spin infinite 1s linear;
     }
 }
 
-  @keyframes Logo-spin {
+@keyframes Logo-spin {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
-  
