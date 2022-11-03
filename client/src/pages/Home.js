@@ -7,7 +7,7 @@ export const Home = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '90vh',
+                height: '80vh',
             }}
         >
             <div className="grid-container">
