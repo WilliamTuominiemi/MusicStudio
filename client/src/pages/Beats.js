@@ -1,6 +1,8 @@
 import { BeatCard } from '../components/BeatCard'
 import { useEffect, useState } from 'react'
 
+import { Card, Container, Row, Col } from 'react-bootstrap'
+
 export const Beats = () => {
     const [beats, setBeats] = useState([])
 
@@ -19,9 +21,11 @@ export const Beats = () => {
     const beatsList = () => {
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {beats.map((beat) => (
-                    <BeatCard key={beat._id} beat={beat} />
-                ))}
+                <Container>
+                    {beats.map((beat) => (
+                        <BeatCard key={beat._id} beat={beat} />
+                    ))}
+                </Container>
             </div>
         )
     }
