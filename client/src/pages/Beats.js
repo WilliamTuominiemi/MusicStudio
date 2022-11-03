@@ -17,7 +17,13 @@ export const Beats = () => {
     }, [])
 
     const beatsList = () => {
-        return beats.map((beat) => <BeatCard key={beat._id} beat={beat} />)
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {beats.map((beat) => (
+                    <BeatCard key={beat._id} beat={beat} />
+                ))}
+            </div>
+        )
     }
 
     return <>{beatsList()}</>

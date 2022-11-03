@@ -8,8 +8,6 @@ export const BeatCard = (data) => {
     const vinylRef = useRef(null)
 
     useEffect(() => {
-        Pitch(data.beat.pitch)
-        Speed(data.beat.speed)
         fixArray(data.beat.notes)
     })
 
@@ -22,6 +20,8 @@ export const BeatCard = (data) => {
     }
 
     const playButton = () => {
+        Pitch(data.beat.pitch)
+        Speed(data.beat.speed)
         Play(notes)
         vinylRef.current.setAttribute('id', 'vinyl')
         setTimeout(() => {
@@ -35,9 +35,9 @@ export const BeatCard = (data) => {
     }
 
     return (
-        <Card className="beat-card" style={{ width: '18rem' }}>
+        <Card className="beat-card" style={{ width: '18rem', float: 'left', background: '#373737' }}>
             <Card.Body>
-                <Card.Title color="text.secondary">{data.beat.name}</Card.Title>
+                <Card.Title style={{ color: 'white' }}>{data.beat.name}</Card.Title>
                 <div>
                     <svg
                         className="vinyl"
