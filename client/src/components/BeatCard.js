@@ -8,23 +8,23 @@ export const BeatCard = (data) => {
     const vinylRef = useRef(null)
 
     useEffect(() => {
-        // fixArray(data)
-        console.log(data)
+        fixArray(data.beat.notes)
     })
 
     const notes = []
 
     const fixArray = (data) => {
-        data.beat.notes.forEach((note) => {
+        data.forEach((note) => {
             notes.push(note[1])
         })
-        console.log(notes)
     }
 
     const playButton = () => {
         Play(notes)
         vinylRef.current.setAttribute('id', 'vinyl')
-        console.log(vinylRef.current)
+        setTimeout(() => {
+            vinylRef.current.removeAttribute('id')
+        }, 10000)
     }
 
     const stopButton = () => {
