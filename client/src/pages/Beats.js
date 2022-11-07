@@ -20,13 +20,11 @@ export const Beats = () => {
 
     const beatsList = () => {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Container>
-                    {beats.map((beat) => (
-                        <BeatCard key={beat._id} beat={beat} />
-                    ))}
-                </Container>
-            </div>
+            <Container className="container">
+                {beats.map((beat) => (
+                    <BeatCard key={beat._id} beat={beat} />
+                ))}
+            </Container>
         )
     }
 

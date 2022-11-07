@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Play, Stop, Pitch, Speed } from './Sound'
-import { Dropdown, Form, Button } from 'react-bootstrap'
+import { Dropdown, Form, Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap'
 
 const Player = (notes) => {
     const [pitch, setPitch] = useState(1.0)
@@ -8,6 +8,12 @@ const Player = (notes) => {
 
     const [name, setName] = useState('')
     const [cover, setCover] = useState('#563d7c')
+
+    const [radioValue, setRadioValue] = useState('1')
+    const radios = [
+        { name: '⏹️', value: '1' },
+        { name: '▶️', value: '2' },
+    ]
 
     let playing = false
 
@@ -40,9 +46,10 @@ const Player = (notes) => {
             case 32:
                 if (playing) {
                     playing = false
+                    setRadioValue(1)
                 } else {
                     playing = true
-                    playButton()
+                    setRadioValue(2)
                 }
                 break
             default:
@@ -50,69 +57,77 @@ const Player = (notes) => {
         }
     }
 
-    const playButton = () => {
-        Play(notes)
-    }
-
     const onScrollPitch = (e) => {
         Stop()
-        const delta = Math.round(e.deltaY * -0.001 * 1000) / 1000
+        const delta = Math.round(e.deltaY * -0.1 * 1000) / 1000
         setPitch(Math.min(Math.max(Math.round((pitch + delta) * 1000) / 1000, 0.5), 5))
         Pitch(pitch)
     }
 
     const onScrollSpeed = (e) => {
         Stop()
-        const delta = Math.round(e.deltaY * -0.1 * 1000) / 1000
+        const delta = Math.round(e.deltaY * -10 * 1000) / 1000
         setSpeed(Math.min(Math.max(Math.round((speed + delta) * 1000) / 1000, 100), 1000))
         Speed(speed)
     }
 
+    const controlButton = (e) => {
+        setRadioValue(e)
+        console.log(e)
+        if (e === '2') {
+            Play(notes)
+            setTimeout(() => {
+                setRadioValue('1')
+                Stop()
+            }, 15 * speed)
+        } else {
+            Stop()
+        }
+    }
+
     return (
-        <div>
-            <button onClick={playButton} style={{ margin: '10px', padding: '10px' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M3 22v-20l18 10-18 10z" />
-                </svg>
-            </button>
-            <button onClick={Stop} style={{ margin: '10px', padding: '10px' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M2 2h20v20h-20z" />
-                </svg>
-            </button>
-            <div className="scroll" onWheelCapture={onScrollPitch}>
-                PITCH
-                <p style={{ fontSize: 20, margin: 'auto' }}>{pitch.toFixed(2)}</p>
-            </div>
-            <div className="scroll" onWheelCapture={onScrollSpeed}>
-                SPEED
-                <p style={{ fontSize: 20, margin: 'auto' }}>{speed}</p>
-            </div>
-            <div className="scroll" onClick={() => window.location.reload(false)}>
-                <svg
-                    width="24"
-                    height="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    style={{ margin: '10px' }}
-                >
-                    <path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" />
-                </svg>
-            </div>
+        <div style={{ textAlign: 'center' }}>
+            <ButtonGroup style={{ backgroundColor: 'rgba(255,255,255)' }} size="lg">
+                {radios.map((radio, idx) => (
+                    <ToggleButton
+                        key={idx}
+                        id={`radio-${idx}`}
+                        type="radio"
+                        variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                        name="radio"
+                        value={radio.value}
+                        checked={radioValue === radio.value}
+                        onChange={(e) => controlButton(e.currentTarget.value)}
+                    >
+                        {radio.name}
+                    </ToggleButton>
+                ))}
+            </ButtonGroup>
+            <Card style={{ margin: '10px', width: '125px' }}>
+                <div onWheelCapture={onScrollPitch}>
+                    PITCH
+                    <p style={{ fontSize: 20, margin: 'auto' }}>{pitch.toFixed(2)}</p>
+                </div>
+            </Card>
+            <Card style={{ margin: '10px', width: '125px' }}>
+                <div onWheelCapture={onScrollSpeed}>
+                    SPEED
+                    <p style={{ fontSize: 20, margin: 'auto' }}>{speed}</p>
+                </div>
+            </Card>
+            <Button style={{ width: '125px' }} size="lg" onClick={() => window.location.reload(false)} variant="light">
+                🗑️
+            </Button>
 
             <Dropdown>
-                <Dropdown.Toggle className="scroll" variant="light">
-                    <svg
-                        width="24"
-                        height="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        style={{ margin: '10px' }}
-                    >
-                        <path d="M9 16h-8v6h22v-6h-8v-1h9v8h-24v-8h9v1zm11 2c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1zm-7.5 0h-1v-14.883l-4.735 5.732-.765-.644 6.021-7.205 5.979 7.195-.764.645-4.736-5.724v14.884z" />
-                    </svg>
+                <Dropdown.Toggle
+                    align="end"
+                    drop="down"
+                    size="lg"
+                    variant="light"
+                    style={{ width: '125px', margin: '10px' }}
+                >
+                    <h1>📤</h1>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
