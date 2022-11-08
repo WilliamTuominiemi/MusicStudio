@@ -1,18 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Beats } from './pages/Beats'
-import { Navbar_ } from './components/Navbar'
+import { Navbar } from './components/Navbar'
 
-function App() {
+export const App = () => {
     return (
-        <Router>
-            <Navbar_ />
+        <BrowserRouter>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/beats" element={<Beats />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     )
 }
-
-export default App

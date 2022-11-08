@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react'
-import Player from './Player'
+import { useRef, useEffect, useState } from 'react'
+import { Player } from './Player'
 
 let notes = []
 
 const gridColor = '#3D434B'
 
-const Canvas = (props) => {
+export const Canvas = (props) => {
     const canvasRef = useRef(null)
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
@@ -128,5 +128,3 @@ const Canvas = (props) => {
         </>
     )
 }
-
-export default Canvas

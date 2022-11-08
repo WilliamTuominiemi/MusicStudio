@@ -1,10 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar as BootstrapNavbar, Container, Nav } from 'react-bootstrap'
 
-export const Navbar_ = () => {
+export const Navbar = () => {
     return (
-        <Navbar bg="dark" expand="lg" style={{ marginBottom: '20px' }}>
+        <BootstrapNavbar bg="dark" expand="lg" style={{ marginBottom: '20px' }}>
             <Container fluid style={{ display: 'flex', justifyContent: 'center' }}>
                 <Nav>
                     <Link to="/" className="nav-link">
@@ -31,6 +30,6 @@ export const Navbar_ = () => {
                     </Link>
                 </Nav>
             </Container>
-        </Navbar>
+        </BootstrapNavbar>
     )
 }

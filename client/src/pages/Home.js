@@ -1,4 +1,4 @@
-import Canvas from '../components/Canvas.js'
+import { Canvas } from '../components/Canvas.js'
 
 export const Home = () => {
     return (
