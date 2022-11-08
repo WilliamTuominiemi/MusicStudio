@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const connectDb = require('./config/connectDb')
-
 const Beat = require('./models/Beat')
 
 const app = express()
@@ -28,10 +27,7 @@ app.post('/', async (req, res) => {
 
 app.get('/', async (req, res) => {
     try {
-        let beats = []
-
-        beats = await Beat.find().sort({ createdAt: -1 })
-
+        const beats = await Beat.find().sort({ createdAt: -1 })
         return res.json({ beats })
     } catch (err) {
         return err

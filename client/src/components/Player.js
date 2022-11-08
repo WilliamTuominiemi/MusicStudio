@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Play, Stop, Pitch, Speed } from './Sound'
 import { Dropdown, Form, Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap'
 
-const Player = (notes) => {
+export const Player = (notes) => {
     const [pitch, setPitch] = useState(1.0)
     const [speed, setSpeed] = useState(500)
 
@@ -141,16 +141,14 @@ const Player = (notes) => {
                             />
                         </Form.Group>
 
-                        <>
-                            <Form.Label htmlFor="exampleColorInput">Cover color</Form.Label>
-                            <Form.Control
-                                type="color"
-                                id="exampleColorInput"
-                                defaultValue={cover}
-                                title="Cover color"
-                                onChange={(e) => setCover(e.target.value)}
-                            />
-                        </>
+                        <Form.Label htmlFor="exampleColorInput">Cover color</Form.Label>
+                        <Form.Control
+                            type="color"
+                            id="exampleColorInput"
+                            defaultValue={cover}
+                            title="Cover color"
+                            onChange={(e) => setCover(e.target.value)}
+                        />
 
                         <Button
                             onClick={async () => {
@@ -166,5 +164,3 @@ const Player = (notes) => {
         </div>
     )
 }
-
-export default Player

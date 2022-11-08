@@ -1,8 +1,6 @@
-import { useEffect, useState, useRef } from 'react'
-
+import { useEffect, useRef } from 'react'
 import { Play, Stop, Pitch, Speed } from './Sound'
-
-import { Card, Container, Row, Col } from 'react-bootstrap'
+import { Card, Col } from 'react-bootstrap'
 
 export const BeatCard = (data) => {
     const vinylRef = useRef(null)
