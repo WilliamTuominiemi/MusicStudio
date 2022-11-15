@@ -18,23 +18,24 @@ export const Player = (notes) => {
     let playing = false
 
     const postData = async () => {
-        const body = {
-            name,
-            cover,
-            pitch,
-            speed,
-            notes,
-        }
-
-        const data = await fetch('http://localhost:8080', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        const json = await data.json()
-        return alert(json.message)
+        if (!Object.keys(notes).length === 0) {
+            const body = {
+                name,
+                cover,
+                pitch,
+                speed,
+                notes,
+            }
+            const data = await fetch('http://localhost:8080', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const json = await data.json()
+            return alert(json.message)
+        } else return alert('You cannot post an empty beat!')
     }
 
     useEffect(() => {
