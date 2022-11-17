@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Play, Stop, Pitch, Speed } from './Sound'
-import { Dropdown, Form, Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap'
+import { DropdownButton, Dropdown, Form, Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap'
 
 export const Player = (notes) => {
     const [pitch, setPitch] = useState(1.0)

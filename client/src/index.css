@@ -31,17 +31,11 @@ body {
 }
 
 .grid-item {
-    background: rgb(219, 219, 219);
-    background: linear-gradient(
-        0deg,
-        rgba(219, 219, 219, 1) 0%,
-        rgba(255, 255, 255, 1) 45%,
-        rgba(220, 220, 220, 1) 100%
-    );
-    border: 1px solid #3d434b;
-    padding: 18px;
     font-size: 27px;
-    text-align: center;
+    margin: 10px;
+    height: 68px;
+    display: flex;
+    justifycontent: center;
 }
 
 .scroll {
