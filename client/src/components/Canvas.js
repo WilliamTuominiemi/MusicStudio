@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { Player } from './Player'
+import { Notes } from './Notes'
 
 let notes = []
 
@@ -10,6 +11,10 @@ export const Canvas = (props) => {
 
     const [coords, setCoords] = useState({ x: 0, y: 0 })
     const [backgroundColor, setBackgroundColor] = useState('#66707E')
+
+    const getNotes = (notes) => {
+        console.log(notes)
+    }
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -114,6 +119,7 @@ export const Canvas = (props) => {
 
     return (
         <>
+            <Notes getNotes={getNotes} />
             <canvas
                 onMouseMove={handleMouseMove}
                 onMouseDown={handleMouseDown}
